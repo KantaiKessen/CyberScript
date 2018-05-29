@@ -12,7 +12,7 @@ def checkfwstatus():
 
 def firewall():
     if not os.getuid != 0:
-        raise NonRootError("Oi m8 u ought ta run as root")
+        raise NonRootError("Oi m8 u cant do firewalls if ye aint root")
     else:
         os.system('apt install ufw')
         os.system('ufw enable')
@@ -32,6 +32,14 @@ def firewall():
                 port = input("\n\t What port number?")
                 os.system('ufw deny' + port)
                 checkfwstatus()
+
+
+def setupsystem():
+    if not os.getuid != 0:
+        raise NonRootError("Oi ye cant install without root ye dumbo")
+    else:
+        exit()
+
 
 
 print("\n\n What scipt ye wanna run kiddo, I aint got all day.\n\n")

@@ -35,6 +35,7 @@ def setupsystem():
 	os.system("apt install -y ufw")
 
 
+<<<<<<< HEAD
 def users():
     allow = 'y'
     administrators = []
@@ -50,6 +51,20 @@ def users():
 
 
 
+
+print("\n\n What scipt ye wanna run kiddo, I aint got all day.\n\n")
+choice = int(input("\t 1. Firewall Setup \n\t 2. AddUser \n\t 3. DeleteUser\n\n\t Script Number: "))
+
+if 1 == choice:
+    firewall()
+    os.system("clear")
+if 2 == choice:
+    users()
+    os.system("clear")
+else:
+    print
+    "Incorrect Answer Choice"
+=======
 def addprogram():
 	addmore = 'y'
 	programnames = ["mysql-server","openssh-server","apache2","samba"]
@@ -91,10 +106,11 @@ def delprogram():
 					unown = input("put in package name of the program")
 					os.system("apt autoremove --purge "+unown)
 				else:
-					return
+					return			
 		
 		
 setupsystem()
+
 print("\n\n What scipt ye wanna run kiddo, I aint got all day.\n\n")
 while True:
 	choice = int(input("\t 1. Firewall Setup \n\t 2. AddUser \n\t 3. DeleteUser \n\t 4. AddProgram \n\t 5. DelProgram \n\t 0. Exit \n\n\t Script Number: "))
@@ -112,3 +128,4 @@ while True:
 	else:
 		print
 		"Incorrect Answer Choice"
+>>>>>>> 047cb6fc51cfa0b768a93c07bc3be861f09c6bec

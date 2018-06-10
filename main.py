@@ -41,12 +41,30 @@ def setupsystem():
         exit()
 
 
+def users():
+    allow = 'y'
+    administrators = []
+    regulars = []
+    while allow == 'y':
+        allow = input("\n\t Yeh wanna add anymore users? (except your own) (y/n)")
+        if allow == 'y':
+            usertype = input("admin or regular (a/r)")
+            if usertype == "a":
+                administrators.append(input("type in username"))
+            elif usertype == "r":
+                regulars.append(input("type in username"))
+
+
+
 
 print("\n\n What scipt ye wanna run kiddo, I aint got all day.\n\n")
 choice = int(input("\t 1. Firewall Setup \n\t 2. AddUser \n\t 3. DeleteUser\n\n\t Script Number: "))
 
 if 1 == choice:
     firewall()
+    os.system("clear")
+if 2 == choice:
+    users()
     os.system("clear")
 else:
     print

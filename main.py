@@ -1,8 +1,13 @@
 import os
 import time
+from shutil import which
 
 
 class NonRootError(Exception):
+    pass
+
+
+class WrongOperatingSystemError(Exception):
     pass
 
 
@@ -34,10 +39,6 @@ def firewall():
             port = input("\n\t What port number?")
             os.system('ufw deny' + port)
             checkfwstatus()
-
-
-def setupsystem():
-    os.system("apt install -y ufw")
 
 
 def addusers():
@@ -143,20 +144,24 @@ def delprogram():
                 return
 
 
-setupsystem()
+if os.name != "posix":
+	raise WrongOperatingSystemError("This only works on posix based systems")
 clear()
+if os.getuid() is not 0:
+	raise NonRootError("You must be root")
 while True:
     print("Welcome to the (R)(TM)(C) Ubuntu Security Editor")
     print("Version 0.50 (C)Copyright NCS Corp 2018")
     print("=======================================================")
     print("(R)(TM)(C) is not liable for any damages to your system")
-    print("\n\n Options:\n\n")
+    print("\n\n\nUFW Exists? "+str(which("ufw") is not None)) 
+    print("Options:")
     choice = int(input(
         "\t 1. Firewall Setup "
         "\n\t 2. Add User "
-        "\n\t 3. DeleteUser "
-        "\n\t 4. AddProgram "
-        "\n\t 5. DelProgram "
+        "\n\t 3. Delete User "
+        "\n\t 4. Add Program "
+        "\n\t 5. Delete Program "
         "\n\t 0. Exit "
         "\n\n > "))
     if 1 == choice:
@@ -166,6 +171,10 @@ while True:
     elif choice == 2:
         addusers()
         time.sleep(3)
+        clear()
+    elif choice == 3:
+        delusers()
+        time.sleep(1)
         clear()
     elif choice == 4:
         addprogram()
